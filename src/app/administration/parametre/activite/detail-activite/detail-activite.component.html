@@ -1,0 +1,38 @@
+<!-- formulaire d'affichage du détail -->
+<ng-template pTemplate="header">
+    <span class="p-mr-auto"> <b>DETAILS ACTIVITE</b></span>
+  </ng-template>
+  <!-- <p-divider></p-divider> -->
+  <hr>
+  <div class="row">
+    <div class="col-md-12 details-item">
+      <span class="va-m"><span class="font-bold">Libelle: </span> {{activite.libelle}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+        <span class="va-m"><span class="font-bold">Lieu: </span> {{activite.ville}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+        <span class="va-m"><span class="font-bold">Date: </span> {{activite.date}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+        <span class="va-m"><span class="font-bold">Nombre_Participants: </span> {{activite.nombre_participants}}</span>
+    </div> 
+    <div class="col-md-12 details-item">
+        <span class="va-m"><span class="font-bold">Resultat_Obtenu: </span> {{activite.resultat_obtenu}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+      <span class="va-m"><span class="font-bold">Indicateur: </span> {{activite.indicateur? activite.indicateur!.libelle:'-'}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+      <span class="va-m"><span class="font-bold">Structure </span> {{activite.structure? activite.structure!.libelle:'-'}}</span>
+    </div>
+    <div class="col-md-12 details-item">
+      <span class="va-m"><span class="font-bold">Document: </span> {{activite.document? activite.document!.libelle:'-'}}</span>
+    </div>
+  
+  </div>
+  <!-- <p-divider></p-divider> -->
+  <div class="p-ml-auto text-right">
+    <button description="reset" icon="pi pi-times" label="Fermer" (click)="clear()" class="p-button-filter mr-2"
+      pButton></button>
+  </div>

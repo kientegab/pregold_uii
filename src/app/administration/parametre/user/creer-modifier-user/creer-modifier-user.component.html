@@ -1,0 +1,90 @@
+<style>
+    .custom-form {
+        margin-left: 8cm;
+        margin-right: 8cm;
+        margin-top: 4cm;
+    }
+    .login-frame {
+        border: 2px solid #eef0f2;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div >
+    <app-confirmation></app-confirmation>
+    <!-- <p-divider></p-divider> -->
+    <ng-template pTemplate="header" style="
+        background-color:#1e88e0;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;">
+        <i class="{{isEditing() ? 'pi-pencil' : 'pi-plus'}} pi p-mr-1 mr-2"></i>
+        <h3 class="mr-auto">
+            {{user.id ? 'Formulaire de modification' : 'Formulaire d\'ajout de'}} user
+        </h3>
+    </ng-template>
+    <p-progressBar *ngIf="isDialogOpInProgress" mode="indeterminate" color="#1e88e0"></p-progressBar>
+    <p-message *ngIf="message" [severity]="message.severity" [text]="message.summary"></p-message>
+    <!-- Form -->
+
+    <form (ngSubmit)="saveEntity()" #dtf="ngForm" class="custom-form login-frame">
+
+        <div class="formgrid grid">
+
+            <div class="field col-12 md:col-6">
+                <label for="matricule">Matricule :</label>
+                <input type="text" id="matricule" name="matricule" #matricule="ngModel" [(ngModel)]="user.matricule" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" #nom="ngModel" [(ngModel)]="user.nom" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="prenom">Prenom:</label>
+                <input type="text" id="prenom" name="prenom" #prenom="ngModel" [(ngModel)]="user.prenom" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col-12 md:col-6">
+                <label for="password">Password:</label>
+                <input type="text" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" required
+                    class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+
+            <div class="p-field p-fluid p-col-12 col-md-6">
+                <label for="profil">Profil</label>
+                <p-dropdown id="profil" name="profil" #profil="ngModel"
+                    [(ngModel)]="user.profil" [options]="profils" placeholder="Selectionner un Profil"
+                    optionLabel="libelle" [showClear]="true"></p-dropdown>
+            </div>
+            <div class="p-field p-fluid p-col-12 col-md-6">
+                <label for="structure">Structure</label>
+                <p-dropdown id="structure" name="structure" #structure="ngModel"
+                    [(ngModel)]="user.structure" [options]="structures" placeholder="Selectionner un structure"
+                    optionLabel="libelle" [showClear]="true"></p-dropdown>
+            </div>
+        </div>
+
+        <!--<p-divider></p-divider>-->
+        <div class="p-ml-auto text-right ">
+            <div class="p-ml-auto text-right">
+                <button type="reset" label="Effacer" class="p-button-filter mr-3 float-left" pButton
+                    icon="pi pi-trash"></button>
+                <button label="Annuler" (click)="clear()" class="p-button-filter mr-3" pButton icon="pi pi-times"></button>
+                <button type="submit" [disabled]="!dtf.form.valid" label="{{isEditing() ? 'Enregistrer' : 'Ajouter'}}"
+                    icon="pi {{isEditing() ? 'pi-save' : 'pi-plus'}}"
+                    class="  {{isEditing() ? 'p-button-primary' : 'p-button-success'}}" pButton>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
